@@ -1,0 +1,28 @@
+<div class="dashboard-container">
+  <h1>Dashboard</h1>
+  <p class="subtitle">Welcome to your dashboard</p>
+
+  <div class="card-grid">
+    @for (card of cards; track card.title) {
+      <mat-card class="stat-card">
+        <mat-card-content>
+          <div class="card-header">
+            <mat-icon class="card-icon" [style.color]="card.color">{{ card.icon }}</mat-icon>
+            <span class="card-value">{{ card.value }}</span>
+          </div>
+          <div class="card-title">{{ card.title }}</div>
+          <div class="card-subtitle">{{ card.subtitle }}</div>
+        </mat-card-content>
+      </mat-card>
+    }
+  </div>
+
+  <mat-card class="content-card">
+    <mat-card-header>
+      <mat-card-title>Recent Activity</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>This section can display recent activities, updates, or any customizable content.</p>
+    </mat-card-content>
+  </mat-card>
+</div>

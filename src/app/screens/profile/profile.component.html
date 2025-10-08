@@ -1,0 +1,109 @@
+<div class="profile-container">
+  <h1>Profile</h1>
+  <p class="subtitle">Manage your personal information</p>
+
+  <div class="profile-layout">
+    <mat-card class="profile-card">
+      <mat-card-content>
+        <div class="avatar-section">
+          <div class="avatar">
+            <mat-icon>person</mat-icon>
+          </div>
+          <button mat-raised-button color="primary">Change Photo</button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="info-card">
+      <mat-card-header>
+        <mat-card-title>Personal Information</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="form-grid">
+          <mat-form-field appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input matInput [(ngModel)]="profile.firstName">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input matInput [(ngModel)]="profile.lastName">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" [(ngModel)]="profile.email">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Phone</mat-label>
+            <input matInput [(ngModel)]="profile.phone">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Bio</mat-label>
+            <textarea matInput rows="4" [(ngModel)]="profile.bio"></textarea>
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <mat-card class="skills-card">
+    <mat-card-header>
+      <mat-card-title>Skills</mat-card-title>
+      <mat-card-subtitle>Add or remove your skills</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-chip-set aria-label="Skills">
+        @for (skill of profile.skills; track skill) {
+          <mat-chip (removed)="removeSkill(skill)">
+            {{ skill }}
+            <button matChipRemove>
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip>
+        }
+      </mat-chip-set>
+      <div class="add-skill-section">
+        <mat-form-field appearance="outline">
+          <mat-label>Add a skill</mat-label>
+          <input matInput [(ngModel)]="newSkill" (keyup.enter)="addSkill()">
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="addSkill()">Add</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="social-card">
+    <mat-card-header>
+      <mat-card-title>Social Links</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="social-grid">
+        <mat-form-field appearance="outline">
+          <mat-label>LinkedIn</mat-label>
+          <input matInput [(ngModel)]="profile.social.linkedin">
+          <mat-icon matPrefix>link</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Twitter</mat-label>
+          <input matInput [(ngModel)]="profile.social.twitter">
+          <mat-icon matPrefix>link</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>GitHub</mat-label>
+          <input matInput [(ngModel)]="profile.social.github">
+          <mat-icon matPrefix>link</mat-icon>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <div class="action-buttons">
+    <button mat-raised-button color="primary" (click)="saveProfile()">Save Changes</button>
+    <button mat-button>Cancel</button>
+  </div>
+</div>

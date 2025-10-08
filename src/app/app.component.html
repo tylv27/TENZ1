@@ -1,0 +1,35 @@
+<div class="app-container">
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav
+      #sidenav
+      mode="side"
+      opened
+      class="sidenav"
+      [class.sidenav-expanded]="isExpanded"
+      (mouseenter)="isExpanded = true"
+      (mouseleave)="isExpanded = false">
+      <div class="nav-list">
+        @for (item of navItems; track item.path) {
+          <a
+            [routerLink]="item.path"
+            routerLinkActive="active"
+            class="nav-item"
+            [matTooltip]="!isExpanded ? item.label : ''"
+            matTooltipPosition="right">
+            <mat-icon class="nav-icon">{{ item.icon }}</mat-icon>
+            <span class="nav-label" [class.visible]="isExpanded">{{ item.label }}</span>
+          </a>
+        }
+      </div>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="main-content">
+      <mat-toolbar color="primary" class="toolbar">
+        <span>Angular App</span>
+      </mat-toolbar>
+      <div class="content-area">
+        <router-outlet />
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
